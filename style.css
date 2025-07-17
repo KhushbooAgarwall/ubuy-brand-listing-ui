@@ -1,0 +1,909 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+body {
+  background: #f6f6f6;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+nav {
+  width: 100%;
+  height: 6vh;
+  display: flex;
+  padding: 0 4vw;
+  justify-content: start;
+  align-items: center;
+  font-size: 1vw;
+  color: rgba(0, 0, 0, 0.812);
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+  border-bottom: 0.1vw solid #e4e4e4;
+}
+#electronics-page {
+  display: flex;
+  gap: 20px;
+  padding: 0 3vw;
+  margin-top: 2vw;
+  position: relative;
+}
+aside {
+  background: #fff;
+  width: 16%;
+  height: fit-content;
+  border-radius: 8px;
+}
+.menu {
+  display: none;
+  cursor: pointer;
+  font-size: 1vw;
+  background: #fff;
+  width: 2.4vw;
+  height: 2.4vw;
+  border-radius: 10px;
+}
+.filters {
+  border-bottom: 1px solid #e4e4e4;
+  padding: 1vw;
+  background: #fff;
+  border-radius: 8px;
+}
+.filters:nth-last-child(1) {
+  border-bottom: none;
+}
+.filters h2 {
+  font-size: 1.1vw;
+  font-weight: 900;
+  margin-bottom: 0.5vw;
+}
+.filter {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  gap: 3vw;
+}
+.slider {
+  width: 100%;
+  appearance: none;
+  height: 0.3vw;
+  background: #00000084;
+  border-radius: 5px;
+  outline: none;
+  position: absolute;
+  top: 2.5vw;
+  left: 0;
+}
+.slider::-webkit-slider-thumb,
+.slide::-webkit-slider-thumb {
+  --webkit-appearance: none;
+  appearance: none;
+  width: 1.2vw;
+  height: 1.2vw;
+  background: white;
+  border: 2px solid #ebe9e9;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+.lines {
+  display: flex;
+  justify-content: space-between;
+  width: 99%;
+  margin-bottom: 1vw;
+  padding: 0 0.3vw;
+  position: absolute;
+  top: 2.8vw;
+  left: 0;
+}
+.line {
+  height: 0.4vw;
+  width: 1px;
+  background: #444;
+}
+.range-limit,
+.range-values {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1vw;
+}
+.check-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.2vw;
+}
+.choice {
+  margin: 0.3vw 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5vw;
+}
+.check-list span {
+  background: #ebe9e9;
+  width: 1.4vw;
+  height: 1.4vw;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.check-list p {
+  padding-left: 0.1vw;
+}
+.filters button {
+  border: none;
+  background: transparent;
+  font-size: 0.8vw;
+  color: gray;
+  font-weight: 700;
+  margin-top: 0.8vw;
+}
+.search-field {
+  border: 1px solid #eee;
+  height: 2.1vw;
+  border-radius: 20px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 0 0.7vw;
+  gap: 0.5vw;
+  margin-bottom: 0.5vw;
+}
+.search-field i {
+  width: 1.5vw;
+  height: 1.5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: orange;
+  border-radius: 50%;
+  font-size: 0.9vw;
+  color: #fff;
+}
+#search {
+  border: none;
+  background: transparent;
+  width: 9vw;
+}
+section {
+  width: 100%;
+}
+.list-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.list-top p {
+  color: gray;
+}
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 0.7vw;
+}
+.btn button {
+  border: none;
+  background: transparent;
+  border-right: 2px solid #cccccc;
+  height: 1.2vw;
+  width: 4.5vw;
+  font-size: 0.9vw;
+  color: rgba(0, 0, 0, 0.812);
+  font-weight: 500;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 2.5vw;
+  width: 11vw;
+  background: blanchedalmond;
+}
+.dropdown button {
+  border: 1px solid #e4e4e4;
+  background: #fff;
+  height: 2.5vw;
+  width: 11vw;
+  padding: 0.5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: ease-in 0.1s;
+}
+.dropbtn i {
+  font-size: 1vw;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border-radius: 0.5vw;
+  min-width: 11vw;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 0.5vw 1vw;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background: rgba(255, 166, 0, 0.69);
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.product-listing {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2vw;
+}
+.item {
+  position: relative;
+  background: #fff;
+  width: 17.8vw;
+  height: 19vw;
+  padding: 2vw 1.5vw;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1vw;
+  border-radius: 10px;
+}
+.item i {
+  position: absolute;
+  top: 6%;
+  right: 8%;
+  background: #cdcdcd;
+  height: 1.7vw;
+  width: 1.7vw;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.item-image {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1vw;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+}
+
+.item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.item-content {
+  margin-top: 1vw;
+  height: calc(100% - 90%);
+}
+.item-heading {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 0.3vw;
+  margin-bottom: 0.6vw;
+}
+.item-heading img {
+  width: 1.1vw;
+  height: 1.1vw;
+}
+.item-heading h3 {
+  font-size: 1vw;
+}
+.item-description {
+  height: 2.5vw;
+}
+.item-description p {
+  font-size: 0.9vw;
+  margin-bottom: 0.5vw;
+  width: 100%;
+}
+.item-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.icon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.icon img:nth-child(1){
+  width: 1vw;
+  height: 1.4vw;
+  position: absolute;
+  left: .1vw;
+}
+.item-bottom p {
+  font-weight: 600;
+  font-size: 1vw;
+}
+#stock {
+  color: rgb(192, 2, 2);
+  font-size: 0.9vw;
+  font-weight: 600;
+  margin-top: 0.3vw;
+}
+/* Responsive Design */
+/* @media (min-width: 1200px) { ... } */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  nav {
+    font-size: 1.4vw;
+  }
+  #electronics-page {
+    padding: 0 5vw;
+  }
+  aside {
+    width: 28%;
+  }
+  .filters h2 {
+    font-size: 1.5vw;
+  }
+  .slider::-webkit-slider-thumb,
+  .slide::-webkit-slider-thumb {
+    width: 1.4vw;
+    height: 1.4vw;
+  }
+  .line {
+    height: 0.5vw;
+  }
+  .range-limit,
+  .range-values {
+    font-size: 1.4vw;
+  }
+  .choice label {
+    font-size: 1.3vw;
+  }
+  .check-list {
+    margin-bottom: 0.5vw;
+  }
+  .check-list span {
+    width: 1.7vw;
+    height: 1.7vw;
+    font-size: 1.4vw;
+  }
+  .check-list p {
+    font-size: 1.3vw;
+  }
+  .filters button {
+    font-size: 1.1vw;
+  }
+  .search-field {
+    height: 3vw;
+  }
+  .search-field i {
+    width: 2.3vw;
+    height: 2.3vw;
+    font-size: 1.2vw;
+  }
+  .list-top p {
+    font-size: 1.5vw;
+  }
+  .btn button {
+    font-size: 1.3vw;
+    height: 1.5vw;
+    width: 5.5vw;
+    border-right: 2px solid #cccccc;
+  }
+  .dropdown {
+    width: 15.8vw;
+  }
+  .dropdown button {
+    font-size: 1.2vw;
+    width: 15.8vw;
+    height: 2.8vw;
+  }
+  .dropbtn i {
+    font-size: 1.5vw;
+  }
+  .dropdown-content {
+    min-width: 15.8vw;
+  }
+
+  .dropdown-content a {
+    font-size: 1.5vw;
+  }
+  .item {
+    width: 21.5vw;
+    height: 28vw;
+    margin-top: 2.3vw;
+    padding: 2vw 1.5vw;
+  }
+  .item i {
+    height: 2.3vw;
+    width: 2.3vw;
+    font-size: 1.4vw;
+  }
+  .item-image {
+    height: 55%;
+  }
+  .item-heading img {
+    width: 1.8vw;
+    height: 1.8vw;
+  }
+  .item-heading h3 {
+    font-size: 1.3vw;
+  }
+  .item-description {
+    height: 4vw;
+  }
+  .item-description p {
+    font-size: 1.3vw;
+  }
+  .item-bottom p {
+    font-size: 1.3vw;
+  }
+  .icon img:nth-child(1){
+    width: 1.9vw;
+  }
+  #stock {
+    font-size: 1.2vw;
+    margin-top: 0.5vw;
+  }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+  nav {
+    font-size: 1.7vw;
+  }
+  #electronics-page {
+    padding: 0 6vw;
+  }
+  aside {
+    width: 38%;
+  }
+  .filters h2 {
+    font-size: 1.8vw;
+    margin-bottom: 1vw;
+  }
+  .filter {
+    gap: 4vw;
+  }
+  .slider {
+    height: 0.4vw;
+    top: 3vw;
+  }
+  .slider::-webkit-slider-thumb,
+  .slide::-webkit-slider-thumb {
+    width: 1.8vw;
+    height: 1.8vw;
+  }
+  .lines {
+    top: 3.4vw;
+  }
+  .line {
+    height: 0.7vw;
+  }
+  .range-limit,
+  .range-values {
+    font-size: 1.8vw;
+  }
+  .choice label {
+    font-size: 1.7vw;
+  }
+  .check-list {
+    margin-bottom: 0.8vw;
+  }
+  .check-list span {
+    width: 2.1vw;
+    height: 2.1vw;
+    font-size: 1.7vw;
+  }
+  .check-list p {
+    font-size: 1.7vw;
+    margin: 1.1vw 0;
+  }
+  .filters button {
+    font-size: 1.4vw;
+  }
+  .search-field {
+    height: 4vw;
+  }
+  .search-field i {
+    width: 2.8vw;
+    height: 2.8vw;
+    font-size: 1.5vw;
+  }
+  .list-top p {
+    font-size: 1.7vw;
+  }
+  .btn button {
+    font-size: 1.6vw;
+    height: 2.5vw;
+    width: 7vw;
+  }
+  .dropdown {
+    width: 18vw;
+    height: 3.5vw;
+  }
+  .dropdown button {
+    font-size: 1.5vw;
+    width: 18vw;
+    height: 3.5vw;
+  }
+  .dropbtn i {
+    font-size: 1.8vw;
+  }
+  .dropdown-content {
+    min-width: 18vw;
+  }
+
+  .dropdown-content a {
+    font-size: 1.8vw;
+  }
+  .item {
+    width: 29.9vw;
+    height: 40vw;
+    margin-top: 2.5vw;
+    padding: 2vw 2vw;
+  }
+  .item i {
+    height: 3vw;
+    width: 3vw;
+    font-size: 1.8vw;
+  }
+  .item-image {
+    height: 60%;
+  }
+  .item-heading img {
+    width: 2.5vw;
+    height: 2.5vw;
+  }
+  .item-heading h3 {
+    font-size: 1.7vw;
+  }
+  .item-description {
+    height: 6vw;
+  }
+  .item-description p {
+    font-size: 1.8vw;
+  }
+  .item-bottom p {
+    font-size: 1.7vw;
+  }
+  .icon img:nth-child(1){
+    width: 2vw;
+    height: 3vw;
+  }
+  #stock {
+    font-size: 1.5vw;
+    margin-top: 0.7vw;
+  }
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+  nav {
+    font-size: 2.2vw;
+  }
+  #electronics-page {
+    margin-top: 4vw;
+    padding: 0 6vw;
+    gap: 6vw;
+  }
+  aside {
+    padding: 0 2vw;
+    width: 60%;
+  }
+  .filters h2 {
+    font-size: 2.5vw;
+    margin-bottom: 1.5vw;
+  }
+  .filter {
+    gap: 6vw;
+  }
+  .slider {
+    height: 0.6vw;
+    top: 4.8vw;
+  }
+  .slider::-webkit-slider-thumb,
+  .slide::-webkit-slider-thumb {
+    width: 2.2vw;
+    height: 2.2vw;
+  }
+  .lines {
+    top: 5.5vw;
+  }
+  .line {
+    height: 0.9vw;
+  }
+  .range-limit,
+  .range-values {
+    font-size: 2vw;
+  }
+  .choice label {
+    font-size: 2vw;
+  }
+  .check-list {
+    margin-bottom: 1vw;
+  }
+  .check-list span {
+    width: 2.8vw;
+    height: 2.7vw;
+    font-size: 2vw;
+  }
+  .check-list p {
+    font-size: 2.2vw;
+    margin: 0.5vw 0;
+  }
+  .filters button {
+    font-size: 1.7vw;
+  }
+  .search-field {
+    height: 5vw;
+    margin-bottom: 1.5vw;
+  }
+  .search-field i {
+    width: 3.5vw;
+    height: 3.5vw;
+    font-size: 2vw;
+  }
+  #search {
+    margin-left: 1vw;
+    width: 80%;
+  }
+  .list-top {
+    flex-direction: column;
+    align-items: start;
+  }
+  .list-top p {
+    font-size: 2.5vw;
+    margin-bottom: 1vw;
+  }
+  .btn button {
+    font-size: 2.1vw;
+    height: 2.8vw;
+    width: 9.5vw;
+  }
+  .dropdown {
+    width: 20vw;
+    height: 4.5vw;
+  }
+  .dropdown button {
+    font-size: 2vw;
+    width: 20vw;
+    height: 4.5vw;
+    padding: 0 1vw;
+  }
+  .dropbtn i {
+    font-size: 2vw;
+  }
+  .dropdown-content {
+    min-width: 20vw;
+  }
+  .dropdown-content a {
+    font-size: 2.1vw;
+  }
+  .item {
+    width: 50vw;
+    height: 48vw;
+    margin-top: 3.5vw;
+    padding: 2vw 4vw;
+  }
+  .item i {
+    height: 5vw;
+    width: 5vw;
+    font-size: 3vw;
+  }
+  .item-image {
+    height: 53%;
+  }
+  .item-heading img {
+    width: 3.5vw;
+    height: 3.5vw;
+  }
+  .item-heading h3 {
+    font-size: 2vw;
+    margin-left: 0.9vw;
+  }
+  .item-description {
+    height: 8vw;
+  }
+  .item-description p {
+    margin-top: 1vw;
+    font-size: 2.5vw;
+  }
+  .item-bottom p {
+    font-size: 2.2vw;
+  }
+  .icon img:nth-child(1){
+    width: 2.5vw;
+    height: 3.5vw;
+  }
+  #stock {
+    font-size: 2vw;
+    margin-top: 0.7vw;
+  }
+}
+@media (min-width: 480px) and (max-width: 575.98px) {
+  nav {
+    font-size: 3vw;
+  }
+  #electronics-page {
+    margin-top: 4vw;
+    padding: 0 6vw;
+    gap: 6vw;
+  }
+  .menu {
+    font-size: 3vw;
+    font-weight: 600;
+    height: 6vw;
+    width: 6vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+  }
+  aside {
+    display: none;
+    padding: 0 2vw;
+    width: 10%;
+  }
+  .menu:hover aside {
+    display: flex;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: #f0f0f0;
+    z-index: 1;
+  }
+  .menu:hover i::before {
+    content: "X"; 
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  .filters h2 {
+    font-size: 2vw;
+    margin-bottom: 1.5vw;
+  }
+  /* Side Menu */
+  /* .filter {
+    gap: 6vw;
+  }
+  .slider {
+    height: 0.6vw;
+    top: 4.8vw;
+  }
+  .slider::-webkit-slider-thumb,
+  .slide::-webkit-slider-thumb {
+    width: 2.2vw;
+    height: 2.2vw;
+  }
+  .lines {
+    top: 5.5vw;
+  }
+  .line {
+    height: 0.9vw;
+  }
+  .range-limit,
+  .range-values {
+    font-size: 2vw;
+  }
+  .choice label {
+    font-size: 2vw;
+  }
+  .check-list {
+    margin-bottom: 1vw;
+  }
+  .check-list span {
+    width: 2.8vw;
+    height: 2.7vw;
+    font-size: 2vw;
+  }
+  .check-list p {
+    font-size: 2.2vw;
+    margin: 0.5vw 0;
+  }
+  .filters button {
+    font-size: 1.7vw;
+  }
+  .search-field {
+    height: 5vw;
+    margin-bottom: 1.5vw;
+  }
+  .search-field i {
+    width: 3.5vw;
+    height: 3.5vw;
+    font-size: 2vw;
+  }
+  #search {
+    margin-left: 1vw;
+    width: 80%;
+  } */
+  .list-top {
+    flex-direction: column;
+    align-items: end;
+  }
+  .list-top p {
+    font-size: 3vw;
+    margin-bottom: 2vw;
+  }
+  .btn button {
+    font-size: 2.6vw;
+    height: 3vw;
+    width: 12vw;
+  }
+  .dropdown {
+    width: 25vw;
+    height: 5.5vw;
+  }
+  .dropdown button {
+    font-size: 2.5vw;
+    width: 25vw;
+    height: 5.5vw;
+    padding: 0 1vw;
+  }
+  .dropdown-content {
+    min-width: 25vw;
+  }
+  .dropdown-content a {
+    font-size: 2.7vw;
+  }
+  .item {
+    width: 65vw;
+    height: 70vw;
+    margin-top: 4.5vw;
+    padding: 2vw 4vw;
+  }
+  .item i {
+    height: 6vw;
+    width: 6vw;
+    font-size: 4vw;
+  }
+  .item-image {
+    height: 60%;
+  }
+  .item-heading img {
+    width: 4.5vw;
+    height: 4.5vw;
+  }
+  .item-heading h3 {
+    font-size: 3vw;
+    margin-left: 0.9vw;
+  }
+  .item-description {
+    height: 10vw;
+  }
+  .item-description p {
+    margin-top: 1vw;
+    font-size: 3.5vw;
+  }
+  .item-bottom p {
+    font-size: 3.2vw;
+  }
+  .icon img:nth-child(1){
+    width: 4vw;
+    height: 4vw;
+  }
+  #stock {
+    font-size: 2.6vw;
+    margin-top: 0.7vw;
+  }
+}
+/* @media (min-width: 360px) and (max-width: 479.98px) {
+
+}
+@media (min-width: 320px) and (max-width: 359.98px) {
+} */
