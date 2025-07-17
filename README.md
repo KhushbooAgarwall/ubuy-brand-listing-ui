@@ -1,4 +1,3 @@
-#Ubuy-Brand-Listing-UI
 A product listing ui of Ubuy.
 
 Electronics Product Listing Page (HTML + CSS)
